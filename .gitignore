@@ -15,6 +15,9 @@ _Settings_/Tasks/*
 # Secrets
 secrets.yaml
 
+# User test folder
+_UserTest_/
+
 # Logs
 *.log
 

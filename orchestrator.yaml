@@ -19,6 +19,13 @@ orchestrator:
   periodic_prompt: ""
   periodic_seconds: 60
   mic_gain: 1
+  file_extensions:
+    - .md
+    - .pdf
+    - .docx
+    - .doc
+    - .txt
+    - .epub
 defaults:
   executor: claude_code
   timeout_minutes: 30
