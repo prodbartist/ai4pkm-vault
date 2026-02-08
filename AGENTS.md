@@ -25,6 +25,7 @@ NEVER proactively create documentation or README files.
 ## Prompts & Workflows
 - Orchestrator config in `orchestrator.yaml` (root)
 - Prompts can be found in `_Settings_/Prompts`
+- Skills can be found in `_Settings_/Skills`
 - Workflows (of prompts) in `_Settings_/Workflows`
 - Templates (of md docs) in `_Settings_/Templates`
 - Knowledge Tasks in `AI/Tasks` (only when requested)
@@ -32,7 +33,7 @@ NEVER proactively create documentation or README files.
 - Check this first for new command (especially if it's abbreviations)
 
 ## Skills
-- Skills are located in `.claude/skills/`
+- Skills are located in `_Settings_/Skills/`
 - Each skill folder contains a `SKILL.md` with instructions
 - To use a skill, read the corresponding `SKILL.md` file first
 - Available skills include:
@@ -73,7 +74,7 @@ tags:
 - **Blank line required before tables**: Markdown tables must have a blank line immediately before them to render properly
 
 ### Diagram Standards
-> **Detailed guide**: See `.claude/skills/obsidian-mermaid/SKILL.md`
+> **Detailed guide**: See `_Settings_/Skills/obsidian-mermaid/SKILL.md`
 
 - **Write diagrams in Mermaid**: Use Mermaid instead of ASCII art
 
@@ -83,7 +84,7 @@ tags:
 - **Optimize document length**: Choose the format that expresses the same information more compactly
 
 ### Link Format Standards
-> **Detailed guide**: See `.claude/skills/obsidian-links/SKILL.md`
+> **Detailed guide**: See `_Settings_/Skills/obsidian-links/SKILL.md`
 
 - Use Link Format below for page properties:
 ```yaml
@@ -105,7 +106,7 @@ tags:
   - `→ **Related research**: [[path/to/file#section-name|display text]]`
 
 ### Properties & Frontmatter Standards
-> **Detailed guide**: See `.claude/skills/obsidian-yaml-frontmatter/SKILL.md`
+> **Detailed guide**: See `_Settings_/Skills/obsidian-yaml-frontmatter/SKILL.md`
 
 - Use a single YAML block at top (`---` … `---`). Leave one blank line after it.
 - Keys are lowercase and consistent: `title`, `source` (URL), `author` (list), `created` (YYYY-MM-DD HH:MM:SS), `tags` (list)
@@ -147,7 +148,7 @@ tags:
 - **If unsure about section**: Link to file only `[[Limitless/YYYY-MM-DD]]`
 
 ### Heading Structure Guidelines
-> **Detailed guide**: See `.claude/skills/obsidian-markdown-structure/SKILL.md`
+> **Detailed guide**: See `_Settings_/Skills/obsidian-markdown-structure/SKILL.md`
 
 - Clippings (EIC/ICT): begin with `## Summary`, then `## Improve Capture & Transcript (ICT)`, then transcript
 - ICT means improve the transcript (correct grammar, translate to Korean, structure with h3), not summarize. Keep length comparable to source; summaries live only under `## Summary`
