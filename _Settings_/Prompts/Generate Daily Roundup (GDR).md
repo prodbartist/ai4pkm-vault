@@ -46,6 +46,9 @@ Generate comprehensive daily summaries integrating multiple sources with quote m
 ```
 
 ## Caveats
+### Folder Exclusion
+- `_` 접두사 폴더 무시 (`_Settings_/`, `_UserTest_/` 등) — 시스템/테스트 파일이므로 소스로 포함하지 않음
+
 ### Source Coverage Requirements
 ⚠️ **CRITICAL**: Target 80%+ coverage of available sources
 
