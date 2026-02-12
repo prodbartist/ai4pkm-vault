@@ -26,6 +26,8 @@ orchestrator:
     - .doc
     - .txt
     - .epub
+  chat_history_dir: _Settings_/History
+  ambient_recording_dir: _Settings_/History/Ambient
 defaults:
   executor: claude_code
   timeout_minutes: 30
@@ -51,11 +53,11 @@ nodes:
     enabled: true
   - type: agent
     name: Generate Daily Roundup (GDR)
-    cron: "0 4 * * *"
+    cron: 0 4 * * *
     output_path: AI/Roundup
   - type: agent
     name: Topic Index Update (TIU)
-    cron: "30 4 * * *"
+    cron: 30 4 * * *
     input_path: AI/Roundup
     output_path: Topics
 id: ai4pkm_vault
