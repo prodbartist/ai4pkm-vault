@@ -1,9 +1,9 @@
 ---
 title: My Second Brain
 tags:
-profile_desc: TBA
-profile_image: "[[BRAIN.jpg]]"
-brain_prompt: "[[BRAIN_PROMPT]]"
+description: TBA
+thumbnail: "[[BRAIN.jpg]]"
+prompt: "[[BRAIN_PROMPT.md]]"
 ---
 
 ## Welcome to My Second Brain
