@@ -44,7 +44,7 @@ nodes:
   - type: agent
     name: Extract Document to Markdown (EDM)
     input_path: Ingest/Documents
-    output_path: Ingest/Documents
+    output_path: AI/Summary
     executor: claude_code
     input_type: new_file
     input_pattern: "*.pdf|*.docx|*.doc|*.txt|*.epub"
