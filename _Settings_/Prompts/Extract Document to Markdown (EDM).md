@@ -19,7 +19,11 @@ Convert documents to well-formatted markdown.
 
 1. **PRE-CHECK**: Skip if `.md` exists and is newer than source
 2. **EXTRACT**: Run appropriate tool/script
-3. **VERIFY**: Ensure frontmatter and content extracted correctly
+3. **SUMMARIZE**: Add `## Summary` section at beginning of output
+   - Write catchy summaries for quick understanding
+   - Use quotes verbatim to convey author's voice
+   - Don't add highlights in summary
+4. **VERIFY**: Ensure frontmatter, summary, and content extracted correctly
 
 ## Output
 
