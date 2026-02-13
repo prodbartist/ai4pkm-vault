@@ -32,7 +32,7 @@ Let's improve this:
 Also find user comments about specific part within markdown or html comments (%%  %%), and mark them as `RESOLVED` when done. 
 
 ### Style References
-There are several style guidelines below (more at `_Settings_/Styles`) which can be applied at user's request, often as a part of `PRW` prompt.
+There are several style guidelines below which can be applied at user's request, often as a part of `PRW` prompt.
 - [[하루키 Style Guide]]
 - [[윤광준 Style Guide]]
 - [[구본형 Style Guide]]
@@ -85,7 +85,7 @@ Write paragraph based on the outline
    - Try to incorporate non-bullet-point sentences AS-IS
    - Try to incorporate the link from the outline AS-IS
 2. When adding new contents, explain what you added and why 
-3. When Style is mentioned find and use style guide in `_Settings_/Style`
+3. When Style is mentioned find and use the style guide
 IMPORTANT: Place the paragraph right below the outline (COP principle)
 ALWAYS add content directly to the document, never paste content in chat
 ```

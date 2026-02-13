@@ -13,7 +13,7 @@ Generate comprehensive research summaries from PKM content for deep dive analysi
 - Optional web search requirements
 
 ## Output
-- Research report in AI/Analysis directory
+- Research report in AI/Writeup directory
 - File: {research topic} - {Agent}.md
 - Korean language preferred (except English source quotes)
 - Quotes and links to source notes

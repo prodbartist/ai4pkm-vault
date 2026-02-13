@@ -222,7 +222,7 @@ Visualize user thoughts in real-time. Supports both passive mode transcripts and
 {
   "id": "reference-1",
   "type": "file",
-  "file": "AI/Analysis/document.md",
+  "file": "AI/Writeup/document.md",
   "x": 540, "y": 270,
   "width": 260, "height": 100,
   "color": "4"

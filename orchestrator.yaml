@@ -5,20 +5,11 @@ orchestrator:
   logs_dir: _Settings_/Logs
   skills_dir: .claude/skills
   bases_dir: _Settings_/Bases
+  chat_history_dir: _Settings_/History
+  ambient_recording_dir: _Settings_/History/Ambient
+  system_prompt_file: _Settings_/Prompts/Real-time Voice Assistant (RVA).md
   max_concurrent: 3
   poll_interval: 1
-  stt_provider: elevenlabs
-  stt_language: auto
-  tts_provider: elevenlabs
-  orchestrator_language: auto
-  system_prompt_file: _Settings_/Prompts/Real-time Voice Assistant (RVA).md
-  wakeword_enabled: true
-  wakeword_mode: conversational
-  manual_end_detection: true
-  periodic_processing: false
-  periodic_prompt: ""
-  periodic_seconds: 60
-  mic_gain: 1
   file_extensions:
     - .md
     - .pdf
@@ -26,8 +17,6 @@ orchestrator:
     - .doc
     - .txt
     - .epub
-  chat_history_dir: _Settings_/History
-  ambient_recording_dir: _Settings_/History/Ambient
 defaults:
   executor: claude_code
   timeout_minutes: 30

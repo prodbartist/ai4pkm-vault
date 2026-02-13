@@ -23,7 +23,7 @@ Generate a daily briefing on topics you're actively researching, based on your r
 ## Output
 
 - `{{output_path}}/YYYY-MM-DD Daily Research Briefing - [Agent].md`
-- Default output_path: `AI/Briefings`
+- Default output_path: `AI/Briefing`
 
 ## Workflow
 
@@ -156,7 +156,7 @@ Brief overview of today's key findings across all topics.
 - type: agent
   name: Daily Research Briefing (DRB)
   cron: 0 8 * * *  # Daily at 8 AM
-  output_path: AI/Briefings
+  output_path: AI/Briefing
   agent_params:
     max_topics: 5
     lookback_days: 7

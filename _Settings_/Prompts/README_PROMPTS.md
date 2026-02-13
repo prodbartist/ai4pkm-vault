@@ -92,7 +92,7 @@ agents:
   EIC:
     input_path: Ingest/Clippings
     input_type: new_file
-    output_path: AI/Articles
+    output_path: AI/Summary
     output_type: new_file
 
   HTC:
@@ -111,7 +111,7 @@ agents:
   ```yaml
   input_path: Ingest/Clippings        # Single path
   input_path:                          # Multiple paths
-    - AI/Articles
+    - AI/Summary
     - Journal
   input_path: ""                       # Empty (content pattern)
   input_path: null                     # Manual invocation
@@ -128,7 +128,7 @@ agents:
 #### `output_path`
 - **Format**: String (relative to vault root)
 - **Purpose**: Output directory
-- **Examples**: `AI/Articles`, `_Settings_/Tasks`
+- **Examples**: `AI/Summary`, `_Settings_/Tasks`
 
 #### `output_type`
 - **Values**:
@@ -176,16 +176,16 @@ log_pattern: "{timestamp}-{agent}.log"
 **Use Case**: Process each new file as it arrives
 
 ```yaml
-input_path: Ingest/Clipping
+input_path: Ingest/Clippings
 input_type: new_file
-output_path: AI/Clipping
+output_path: AI/Summary
 output_type: new_file
 output_naming: "{title} - Processed.md"
 ```
 
 **Behavior**:
-- Agent triggers immediately when new file appears in `Ingest/Clipping/`
-- Creates new file in `AI/Clipping/` with processed content
+- Agent triggers immediately when new file appears in `Ingest/Clippings/`
+- Creates new file in `AI/Summary/` with processed content
 - One input → one output
 
 **Example**: EIC (Enrich Ingested Content)
@@ -197,11 +197,11 @@ output_naming: "{title} - Processed.md"
 **Use Case**: Aggregate and summarize daily content
 
 ```yaml
-input_path: Ingest/Limitless
+input_path: Ingest/Clippings
 input_type: daily_file
-output_path: AI/Lifelog
+output_path: AI/Summary
 output_type: daily_file
-output_naming: "{date} Lifelog - {agent}.md"
+output_naming: "{date} Summary - {agent}.md"
 ```
 
 **Behavior**:
@@ -209,7 +209,7 @@ output_naming: "{date} Lifelog - {agent}.md"
 - Creates/updates single daily summary file
 - Many inputs → one daily output
 
-**Example**: PLL (Process Life Logs)
+**Example**: GDR (Generate Daily Roundup)
 
 ---
 
@@ -240,9 +240,8 @@ output_type: update_file
 
 ```yaml
 input_path:
-  - AI/Clipping
-  - AI/Lifelog
-  - AI/Research
+  - AI/Summary
+  - Journal
 input_type: daily_file
 output_path: AI/Roundup
 output_type: daily_file
@@ -262,19 +261,19 @@ output_type: daily_file
 **Use Case**: Process non-markdown files
 
 ```yaml
-input_path: Ingest/Photolog/Processed
+input_path: Ingest/Documents
 input_type: new_file
-input_pattern: "*.{jpg,jpeg,png,yaml}"
-output_path: Ingest/Photolog
-output_type: daily_file
+input_pattern: "*.{pdf,docx,doc,txt,epub}"
+output_path: AI/Summary
+output_type: new_file
 ```
 
 **Behavior**:
-- Agent triggers on image files + metadata
-- Processes visual content
-- Creates markdown output with embedded images
+- Agent triggers on document files
+- Extracts and processes content
+- Creates markdown output with structured content
 
-**Example**: PPP (Pick and Process Photos)
+**Example**: EDM (Extract Document to Markdown)
 
 ---
 
@@ -321,13 +320,13 @@ Brief description of agent purpose (1-2 sentences).
 ### Best Practices
 
 1. **Be Specific About Input**
-   - File location: "Files in `Ingest/Clipping/`"
+   - File location: "Files in `Ingest/Clippings/`"
    - File format: "Markdown with frontmatter"
    - Size limits: "Articles >3000 words need chunking"
    - Required properties: "Must have `title` and `source`"
 
 2. **Define Clear Output**
-   - File location: "Creates file in `AI/Clipping/`"
+   - File location: "Creates file in `AI/Summary/`"
    - Naming convention: "{original-title} - Processed.md"
    - Added sections: "## Summary", "## Key Points"
    - Property updates: "Sets `status: processed`"
@@ -355,21 +354,21 @@ Brief description of agent purpose (1-2 sentences).
 title: Enrich Ingested Content (EIC)
 abbreviation: EIC
 category: ingestion
-input_path: Ingest/Clipping
+input_path: Ingest/Clippings
 input_type: new_file
-output_path: AI/Clipping
+output_path: AI/Summary
 output_type: new_file
 ---
 
 Improve captured content through transcript correction, summarization, and knowledge linking.
 
 ## Input
-- Markdown files in `Ingest/Clipping/`
+- Markdown files in `Ingest/Clippings/`
 - Must have frontmatter with `title` and `source`
 - Long articles may need chunking (>3000 words)
 
 ## Output
-- Enhanced file in `AI/Clipping/`
+- Enhanced file in `AI/Summary/`
 - Adds `## Summary` section at top
 - Sets `status: processed` property
 - Adds topic links and formatting
@@ -391,8 +390,7 @@ title: Generate Daily Roundup (GDR)
 abbreviation: GDR
 category: research
 input_path:
-  - AI/Clipping
-  - AI/Lifelog
+  - AI/Summary
   - Journal
 input_type: daily_file
 output_path: AI/Roundup
@@ -406,7 +404,7 @@ Create comprehensive daily summary integrating multiple sources.
 - Target date: YYYY-MM-DD
 - All files from specified paths for that date
 - Journal entry if exists
-- Processed clippings and lifelogs
+- Processed clippings and summaries
 
 ## Output
 - File: `AI/Roundup/{YYYY-MM-DD} - Daily Roundup.md`
@@ -421,29 +419,27 @@ Create comprehensive daily summary integrating multiple sources.
 
 ```yaml
 ---
-title: Pick and Process Photos (PPP)
-abbreviation: PPP
+title: Extract Document to Markdown (EDM)
+abbreviation: EDM
 category: ingestion
-input_path: Ingest/Photolog/Processed
+input_path: Ingest/Documents
 input_type: new_file
-input_pattern: "*.{jpg,jpeg,png,yaml}"
-output_path: Ingest/Photolog
-output_type: daily_file
-output_naming: "{date} Photolog.md"
+input_pattern: "*.{pdf,docx,doc,txt,epub}"
+output_path: AI/Summary
+output_type: new_file
+output_naming: "{title}.md"
 ---
 
-Process and curate daily photos into organized photologs.
+Extract and convert documents to structured markdown.
 
 ## Input
-- Image files in `Ingest/Photolog/Processed/`
-- Metadata YAML files with timestamps
-- Calendar data via MCP
+- Document files in `Ingest/Documents/`
+- Supported formats: PDF, DOCX, DOC, TXT, EPUB
 
 ## Output
-- Daily photolog: `{YYYYMMDD} Photolog.md`
-- 5-10 curated photos per day
-- Inline image format with EXIF timestamps
-- Organized by time of day and activity
+- Structured markdown in `AI/Summary/`
+- Preserves document structure and headings
+- Extracted text with proper formatting
 ```
 
 ---
@@ -516,7 +512,7 @@ Agent triggers when `%% #ai %%` appears in any file, then removes the trigger.
 ### Pattern: Calendar-Integrated Processing
 
 ```yaml
-input_path: Ingest/Limitless
+input_path: Ingest/Clippings
 input_type: updated_file
 mcp_servers:
   - gcal
@@ -530,13 +526,13 @@ Agent uses Google Calendar MCP to match transcripts with meetings.
 
 ```yaml
 # Stage 1: EIC
-input_path: Ingest/Clipping
-output_path: AI/Clipping
+input_path: Ingest/Clippings
+output_path: AI/Summary
 
 # Stage 2: GDR (uses EIC output)
 input_path:
-  - AI/Clipping
-  - AI/Lifelog
+  - AI/Summary
+  - Journal
 output_path: AI/Roundup
 ```
 
@@ -567,11 +563,11 @@ Before committing a new prompt file:
 
 ```yaml
 # In Prompts folder (clean, canonical)
-input_path: Ingest/Clipping
+input_path: Ingest/Clippings
 input_type: new_file
 
 # Orchestrator derives (internal use only)
-trigger_pattern: "Ingest/Clipping/*.md"
+trigger_pattern: "Ingest/Clippings/*.md"
 trigger_event: "created"
 ```
 
@@ -588,3 +584,4 @@ Keep Prompts files clean - no orchestrator-specific trigger properties here.
 ---
 
 *For orchestrator implementation details, see `docs/_specs/2025-10-27 Orchestrator User Guide.md`*
+ser Guide.md`*
