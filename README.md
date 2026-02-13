@@ -9,15 +9,13 @@ ai4pkm_vault/
 ├── .claude/
 │   └── skills/           # Claude skills (subtree)
 ├── _Settings_/           # Configuration and system files
+│   ├── Bases/            # Obsidian database definitions
 │   ├── Prompts/          # AI agent prompts
 │   ├── Templates/        # Markdown templates
 │   ├── Guidelines/       # PKM guidelines
 │   └── Logs/             # Execution logs
-├── Bases/                # Obsidian database definitions
 ├── AI/                   # AI-generated content
 │   ├── Summary/          # Enriched articles
-│   ├── Analysis/         # Analysis outputs
-│   ├── Tasks/            # Knowledge tasks
 │   └── Canvas/           # Visual canvases
 ├── Ingest/               # Input content
 │   └── Clippings/        # Web clippings

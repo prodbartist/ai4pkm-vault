@@ -8,7 +8,7 @@ Generate comprehensive daily summaries integrating multiple sources with quote m
 ## Input
 - Target Date: YYYY-MM-DD (default: yesterday)
 - Journal/{{YYYY-MM-DD}} as starting point
-- AI/Sharable,Analysis,Summary
+- AI/Summary
 - [[Journal Template]] if file doesn't exist
 
 ## Output

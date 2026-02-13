@@ -26,9 +26,8 @@ NEVER proactively create documentation or README files.
 - Orchestrator config in `orchestrator.yaml` (root)
 - Prompts can be found in `_Settings_/Prompts`
 - Skills can be found in `_Settings_/Skills`
-- Workflows (of prompts) in `_Settings_/Workflows`
 - Templates (of md docs) in `_Settings_/Templates`
-- Knowledge Tasks in `AI/Tasks` (only when requested)
+- Knowledge Tasks in `_Settings_/Tasks` (only when requested)
 - Each command can be called using abbreviations
 - Check this first for new command (especially if it's abbreviations)
 
@@ -135,9 +134,9 @@ tags:
 - Verify file existence before linking
   - Fix broken links immediately
 - **Link to original sources, not topic indices**
-  - Topic files (e.g., `Topics/Business & Career/Career.md`) are indices/aggregations
+  - Topic files (e.g., `Topics/PKM.md`) are indices/aggregations
   - Always link to the original article, clipping, or document where content first appeared
-  - Example: Link to `[[Ingest/Articles/2025-08-15 역스킬 현상]]` not `[[Topics/Business & Career/Career#역스킬]]`
+  - Example: Link to `[[Ingest/Clippings/2025-08-15 역스킬 현상]]` not `[[Topics/PKM#역스킬]]`
   - This maintains proper source attribution and traceability
 
 ## Source/Prompt-specific Guidelines

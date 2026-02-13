@@ -12,43 +12,6 @@ Refer to that file for:
 
 ---
 # Claude Code Specific Rules
-## Voice Mode
-### Language
-- Support both English and Korean in voice mode
-- Always use `tts_model="gpt-4o-mini-tts"` for both languages
-	- This model provides natural pronunciation for both English and Korean
-- Read additional setting from environment variables
-- By default continue conversation from previous chat (`AI/Voice/` folder)
-
-### Listening
-- Listen patiently; wait 3-5 seconds before barging in
-	- Unless user explicitly ended conversation
-- Don't detect random things when not spoken
-	- Things like '시청해주셔서 감사합니다.'
-
-### Tasks within Conv
-- For longer task, spawn a subagent to process the task and continue conversation
-	- Respond to the user when the subagent is completed
-
-### Conv Recording
-- Save all voice conversations to `AI/Voice/` folder
-	- Update the file throughout the conversation to maintain record
-- Include full transcript with speaker labels and timestamps
-	- **Only include conversation transcript - no summaries, notes, or other content**
-	- When creating or referencing documents during conversation, add them as sub-bullets:
-		- `생성된 문서: [[path/to/created/file]]`
-		- `참고한 문서: [[path/to/referenced/file1]], [[path/to/referenced/file2]]`
-- Use format: `YYYY-MM-DD Voice Conversation.md`
-	- Detailed format below
-
-```
-# User and Claude's conversation
-## Initial greetings and discussion of weekend plans
-- User (10/10/25 7:54 AM): Hello!
-- Claude (10/10/25 7:54 AM): I created a document for you.
-  - 생성된 문서: [[AI/Tasks/2025-10-10 Task]]
-  - 참고한 문서: [[Journal/2025-10-10]]
-```
 
 ## 📋 Task Management
 ### TodoWrite Usage
