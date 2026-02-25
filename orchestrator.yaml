@@ -49,5 +49,12 @@ nodes:
     cron: 30 4 * * *
     input_path: AI/Roundup
     output_path: Topics
+  - type: agent
+    name: Ambient Canvas Brainstorming (ACB)
+    input_path: _Settings_/History/Ambient
+    output_path: AI/Canvas
+    input_type: new_file
+    output_naming: "{datetime} {title}.canvas"
+    enabled: true
 id: ai4pkm_vault
 name: ai4pkm_vault
