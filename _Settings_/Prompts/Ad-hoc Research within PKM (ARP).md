@@ -32,6 +32,7 @@ Generate comprehensive research summaries from PKM content for deep dive analysi
    - Review Experience Notes (Journal)
    - Examine Learning Notes (Clippings)
    - Check My Own Work & Writings (Projects & Publish)
+   - Use `obsidian search query="research term"` for cross-vault full-text search (see `obsidian-cli` skill)
    - Perform web search if needed
 
 3. SYNTHESIS & DOCUMENTATION

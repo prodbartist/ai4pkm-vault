@@ -51,6 +51,7 @@ updated: "2026-01-04"
    - wiki 링크 유효성 검증
    - 중복 엔트리 제거
    - 모든 수정된 Topic 파일 frontmatter 검증 (수정 시 자동 표준화)
+   - **Tip**: `obsidian unresolved` (broken links), `obsidian deadends` (no outgoing links), `obsidian orphans` (unreferenced files) — see `obsidian-cli` skill
 
 4. VERIFICATION
    - 입력 문서의 Topic 언급과 실제 Topic 파일 엔트리 교차 검증

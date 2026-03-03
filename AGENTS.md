@@ -43,10 +43,13 @@ NEVER proactively create documentation or README files.
   - `gemini-image-skill` - Image generation with Gemini
   - `ai4pkm-helper` - AI4PKM specific helpers
   - `gobi-onboarding` - Gobi Desktop 3.0 voice onboarding flow
+  - `gobi-cli` - Gobi CLI for spaces, threads, brains, and sessions
+  - `obsidian-cli` - Obsidian CLI for search, link validation, properties, and file operations (requires running Obsidian)
 
 ## Search over files
 - For searching over topic or dates, start from `Topics` or `Roundup` folder
 - Follow markdown link to find related files (use `find` to find exact location)
+- **If Obsidian is running**: Use `obsidian search query="term" path="Topics"` for full-text search, or `obsidian files folder="Topics"` to list files (see `obsidian-cli` skill)
 * **Consider `.gitignore` when searching files**: When finding file lists or searching content, use `respect_git_ignore=False` option to include all relevant files that might otherwise be excluded by `.gitignore`.
 
 ## 📝 Content Creation Requirements
@@ -138,6 +141,7 @@ tags:
   - Always link to the original article, clipping, or document where content first appeared
   - Example: Link to `[[Ingest/Clippings/2025-08-15 역스킬 현상]]` not `[[Topics/PKM#역스킬]]`
   - This maintains proper source attribution and traceability
+  - **Tip**: `obsidian unresolved` lists all broken links; `obsidian backlinks file="Note"` checks incoming links (see `obsidian-cli` skill)
 
 ## Source/Prompt-specific Guidelines
 ### Limitless Link Format

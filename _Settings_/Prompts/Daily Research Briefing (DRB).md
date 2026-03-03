@@ -36,6 +36,8 @@ Scan `Topics/` folder for recently modified files (last 7 days):
 find Topics/ -name "*.md" -mtime -7 | sort -t/ -k2
 ```
 
+> **Alternative (if Obsidian running)**: `obsidian files folder="Topics"` lists all topic files via Obsidian's index.
+
 **Selection criteria:**
 1. Sort by modification date (most recent first)
 2. Select up to 5 topics

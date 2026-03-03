@@ -1,4 +1,4 @@
-sessionId: 5ac15cbf-cbf0-4cc9-abec-07c16bcdb040
+orchestratorEnabled: true
 voiceSettings:
   primaryLanguage: ko
   secondaryLanguage: en

@@ -89,3 +89,4 @@ Improve captured content through transcript correction, summarization, and knowl
 - Only link to existing topics in KB
 - Validate all topic links before adding
 - Add meaningful one-line summaries to topics
+- **Tip**: Use `obsidian search query="keyword" path="Topics"` to discover existing topics; `obsidian unresolved` to verify all links resolve (see `obsidian-cli` skill)

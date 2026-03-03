@@ -56,6 +56,7 @@ Generate comprehensive daily summaries integrating multiple sources with quote m
 - Extract 3-5 memorable quotes (format per `obsidian-markdown-structure` skill)
 - Validate ALL topic links (use `obsidian-links` skill)
 - Link to established topics: PKM.md, AI Tools.md, Golf.md, Life Philosophy.md
+- Post-validation: `obsidian unresolved` to catch any broken links after roundup generation (use `obsidian-cli` skill)
 
 ### Journal Enhancement Rules
 - Be brief but comprehensive

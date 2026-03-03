@@ -1,11 +1,18 @@
 ---
-title: My Second Brain
+title: "My Second Brain"
 tags:
-description: TBA
-thumbnail: "[[BRAIN.jpg]]"
-prompt: "[[BRAIN_PROMPT.md]]"
+  - profile
+  - second-brain
+profile_desc: TBA
+created: 2024-01-01 00:00:00
 ---
 
 ## Welcome to My Second Brain
 
-(이 파일은 온보딩 과정에서 자동으로 채워집니다.)
+This is your personal knowledge base. Complete the onboarding to set up your profile and start building your second brain.
+
+### 👤 Profile
+- TBA
+
+### 🎯 Goals in Gobi Desktop
+- TBA
