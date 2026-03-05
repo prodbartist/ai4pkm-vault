@@ -1,9 +1,11 @@
 ---
 title: "My Second Brain"
+description: TBA
+thumbnail: "[[BRAIN.jpg]]"
+prompt: "[[BRAIN_PROMPT.md]]"
 tags:
   - profile
   - second-brain
-profile_desc: TBA
 created: 2024-01-01 00:00:00
 ---
 
