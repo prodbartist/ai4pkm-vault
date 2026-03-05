@@ -265,9 +265,25 @@ metadata:
 
 2단계에서 파악한 사용자 정보를 `BRAIN.md` (볼트 루트)에 반영한다.
 
-**업데이트 내용:**
+**업데이트 내용 — 반드시 아래 템플릿의 모든 필드를 포함할 것:**
+
+```yaml
+---
+title: "사용자 이름's Second Brain"
+description: 홈페이지/대화에서 추출한 프로필 요약 (이름, 소속, 전문 분야, 관심사)
+thumbnail: "[[BRAIN.jpg]]"
+prompt: "[[BRAIN_PROMPT.md]]"
+tags:
+  - profile
+  - second-brain
+created: YYYY-MM-DD HH:MM:SS
+---
+```
+
 - `title`: 사용자의 이름이 포함된 브레인 명칭
-- `description`: 홈페이지/대화에서 추출한 프로필 요약 (이름, 소속, 전문 분야, 관심사)
+- `description`: 홈페이지/대화에서 추출한 프로필 요약 (이름, 소속, 전문 분야, 관심사) — **필수, 비워두지 말 것**
+- `thumbnail`: `"[[BRAIN.jpg]]"` (기존값 유지) — **필수**
+- `prompt`: `"[[BRAIN_PROMPT.md]]"` (기존값 유지) — **필수**
 - 본문 `## Welcome to My Second Brain` 섹션에 프로필 상세 내용 작성
 
 **동기화 제안 (필수 체크포인트):**
