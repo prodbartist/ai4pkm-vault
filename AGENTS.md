@@ -125,7 +125,8 @@ tags:
   - When updating, don't just append new content; revise with overall consistency in mind (duplication is a sin)
 
 ### Language Preferences
-- Use Korean as default language (English is fine, say, to quote original note)
+- Use the `primaryLanguage` from `.gobi/settings.yaml` as the default language for all output (English is fine, say, to quote original note)
+- For voice/conversation: match the user's spoken language; fall back to `primaryLanguage` if ambiguous
 
 ### 🔗 Critical: Wiki Links Must Be Valid
 - **All wiki links must point to existing files**

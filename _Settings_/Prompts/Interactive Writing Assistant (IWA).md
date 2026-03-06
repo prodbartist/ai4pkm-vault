@@ -66,7 +66,7 @@ Enrich and improve outline itself to prepare writing
 ### Improve Voice Transcript (IVT)
 ```
 1. Fix all grammar or transcript errors
-   - Translate to Korean for Clippings
+   - Translate to the vault's default language (primaryLanguage in .gobi/settings.yaml) for Clippings
    - Remove extra/duplicated newlines
 2. Add chapter (say, one per page)
    - Use heading3 (###)
