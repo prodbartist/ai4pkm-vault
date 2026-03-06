@@ -1,0 +1,38 @@
+{
+	"nodes":[
+		{"id":"step1","type":"text","text":"## 1단계: PKM과 GD 소개\n- PKM 목표 소개 (지식 구축/정리/생산성)\n- GD 핵심 기능 (음성 대화, AI 정리, 자동 수집)\n- 옵시디언 연동 여부 확인\n- CLI 연결 확인 (`obsidian version`)","x":-540,"y":-440,"width":388,"height":191,"color":"1"},
+		{"id":"step2","type":"text","text":"## 2단계: 사용자 파악\n- 이름/직업/관심 분야 파악\n- 웹 검색으로 프로필 보강\n- 관심사 & 목표 파악 (Build K / Create / Share)\n- BRAIN.md 업데이트\n- 프로필 동기화 제안 → 즉시 실행","x":-540,"y":-228,"width":388,"height":212,"color":"1"},
+		{"id":"step3","type":"text","text":"## 3단계: 지식 구축\n- Web/Doc Ingestion (클리핑, 문서, 구글 연동)\n- 웹 클리퍼 설치 (옵시디언 시)\n- Timeline & Graph 시각화\n- DRB 활성화 (뉴스 브리핑)\n- Topic Index 활성화\n- 옵시디언 그래프/캔버스 탐색","x":-540,"y":6,"width":388,"height":233,"color":"1"},
+		{"id":"step4","type":"text","text":"## 4단계: 콘텐츠 생성\n- Writeup: AI 기반 글 작성\n- Video: 슬라이드 → 영상 변환\n- Markdown Video 파이프라인","x":-540,"y":260,"width":388,"height":149,"color":"1"},
+		{"id":"step5","type":"text","text":"## 5단계: 지식 공유 (선택)\n- `gobi space list` → 스페이스 목록 확인\n- `gobi space warp` → 스페이스 선택/참여\n- 브레인 업데이트 게시\n- 최신 쓰레드 확인","x":-540,"y":430,"width":388,"height":170,"color":"1"},
+		{"id":"step6","type":"text","text":"## 6단계: Post-boarding\n- 옵시디언 설치 가이드 (미연동 시)\n- 웹 클리퍼 설치 (미설치 시)\n- 완료 항목/건너뛴 항목 정리\n- 다음 단계 제안","x":-540,"y":621,"width":388,"height":159,"color":"1"},
+		{"id":"flow_ingest","type":"text","text":"```query\npath:\"Ingest/\"\n```","x":401,"y":-228,"width":345,"height":191,"color":"4"},
+		{"id":"flow_summary","type":"text","text":"```query\npath:\"AI/Summary/\"\n```","x":401,"y":6,"width":345,"height":191,"color":"4"},
+		{"id":"flow_topics","type":"text","text":"```query\npath:\"Topics/\"\n```","x":401,"y":239,"width":345,"height":191,"color":"4"},
+		{"id":"flow_publish","type":"text","text":"```query\npath:\"Publish/\"\n```","x":401,"y":472,"width":345,"height":191,"color":"4"},
+		{"id":"title","type":"text","text":"# Gobi Onboarding Flow","x":-540,"y":-540,"width":1286,"height":60,"color":"6"},
+		{"id":"step3files","type":"text","text":"### 수정 파일\n- [[Ingest/Clippings/]] — 웹 클리핑\n- [[Ingest/Documents/]] — 문서 파일\n- [[AI/Summary/]] — EIC 출력\n- [[Topics/]] — TIU 출력\n- [[orchestrator.yaml]] — DRB/TIU 노드","x":-48,"y":22,"width":345,"height":233},
+		{"id":"step4files","type":"text","text":"### 수정 파일\n- [[AI/Writeup/]] — 글 초안\n- [[Publish/Slides/]] — 슬라이드\n- [[Publish/Videos/]] — 영상 파일","x":-48,"y":276,"width":345,"height":149},
+		{"id":"step5files","type":"text","text":"### 수정 파일\n- [[.gobi/settings.yaml]] — selectedSpaceSlug\n- Gobi Space — 브레인 업데이트 게시","x":-48,"y":446,"width":345,"height":170},
+		{"id":"step6files","type":"text","text":"### 수정 파일\n- 추가 파일 변경 없음\n- 사용자 안내만 진행","x":-48,"y":637,"width":345,"height":159},
+		{"id":"step2files","type":"text","text":"### 수정 파일\n- [[BRAIN]] — 프로필 정보\n- [[BRAIN_PROMPT]] — 에이전트 프롬프트\n- [[.gobi/syncfiles]] — 동기화 파일 목록\n- [[orchestrator.yaml]] — 워커 설정","x":-48,"y":-212,"width":345,"height":212},
+		{"id":"step1files","type":"text","text":"### 수정 파일\n- [[.gobi/settings.yaml]] — `obsidian_enabled` 추적\n- Obsidian vault 열기 (사용자 직접)","x":-48,"y":-424,"width":345,"height":191}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"step1","fromSide":"right","toNode":"step1files","toSide":"left"},
+		{"id":"e2","fromNode":"step2","fromSide":"right","toNode":"step2files","toSide":"left"},
+		{"id":"e3","fromNode":"step3","fromSide":"right","toNode":"step3files","toSide":"left"},
+		{"id":"e4","fromNode":"step4","fromSide":"right","toNode":"step4files","toSide":"left"},
+		{"id":"e5","fromNode":"step5","fromSide":"right","toNode":"step5files","toSide":"left"},
+		{"id":"e6","fromNode":"step6","fromSide":"right","toNode":"step6files","toSide":"left"},
+		{"id":"e_s1s2","fromNode":"step1","fromSide":"bottom","toNode":"step2","toSide":"top","color":"1"},
+		{"id":"e_s2s3","fromNode":"step2","fromSide":"bottom","toNode":"step3","toSide":"top","color":"1"},
+		{"id":"e_s3s4","fromNode":"step3","fromSide":"bottom","toNode":"step4","toSide":"top","color":"1"},
+		{"id":"e_s4s5","fromNode":"step4","fromSide":"bottom","toNode":"step5","toSide":"top","color":"1"},
+		{"id":"e_s5s6","fromNode":"step5","fromSide":"bottom","toNode":"step6","toSide":"top","color":"1"},
+		{"id":"e_f1","fromNode":"step3files","fromSide":"right","toNode":"flow_ingest","toSide":"left"},
+		{"id":"e_f2","fromNode":"step3files","fromSide":"right","toNode":"flow_summary","toSide":"left"},
+		{"id":"e_f3","fromNode":"step3files","fromSide":"right","toNode":"flow_topics","toSide":"left"},
+		{"id":"e_f4","fromNode":"step4files","fromSide":"right","toNode":"flow_publish","toSide":"left"}
+	]
+}
