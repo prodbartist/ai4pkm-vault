@@ -74,7 +74,7 @@ updated: 2026-02-24
    - 추출된 토픽 중 가장 핵심적인 주제를 1-3단어로 요약
    - 캔버스 파일명에 사용: AI/Canvas/{{datetime}} {{main_topic}}.canvas
    - 예시: "고비 브랜딩 논의", "스타트업 결심", "커뮤니티 비전"
-   - 한국어 기본, 핵심 키워드 중심으로 간결하게
+   - Use vault's default language (primaryLanguage in .gobi/settings.yaml), 핵심 키워드 중심으로 간결하게
 
 5. FIND EXISTING CANVAS
    - IF canvas_path가 이미 설정됨 (MONITOR LOOP 재실행):
@@ -361,7 +361,7 @@ updated: 2026-02-24
 - 기존 캔버스와 동일한 내용
 
 ### 언어 처리
-- 한국어 기본, 영어 원문 유지
+- Use vault's default language (primaryLanguage in .gobi/settings.yaml), 영어 원문 유지
 - 다국어 감탄사는 무시 (Ciao, Merhaba 등)
 
 ### 파일 크기

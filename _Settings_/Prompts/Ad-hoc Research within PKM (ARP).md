@@ -15,7 +15,7 @@ Generate comprehensive research summaries from PKM content for deep dive analysi
 ## Output
 - Research report in AI/Writeup directory
 - File: {research topic} - {Agent}.md
-- Korean language preferred (except English source quotes)
+- Use vault's default language (primaryLanguage in .gobi/settings.yaml) (except English source quotes)
 - Quotes and links to source notes
 - Further research questions and web search prompts
 - Link & summary added to source note
@@ -51,7 +51,7 @@ Generate comprehensive research summaries from PKM content for deep dive analysi
 - Delve into relevant learning & experience
 
 ### Output Standards
-- Korean preferred language (except when quoting English sources)
+- Use vault's default language (except when quoting English sources)
 - Include quotes and links to source notes
 - Add further research questions for web investigation
 - Create new note with suffix format: {research topic} - {Agent}
