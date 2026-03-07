@@ -41,7 +41,7 @@ NEVER proactively create documentation or README files.
   - `obsidian-markdown-structure` - Markdown structure guidelines
   - `markdown-video` - Video generation from markdown
   - `gemini-image-skill` - Image generation with Gemini
-  - `ai4pkm-helper` - AI4PKM specific helpers
+  - `ai4pkm-cli` - AI4PKM CLI for orchestrator config, worker management, and vault updates
   - `gobi-onboarding` - Gobi Desktop 3.0 voice onboarding flow
   - `gobi-cli` - Gobi CLI for spaces, threads, brains, and sessions
   - `obsidian-cli` - Obsidian CLI for search, link validation, properties, and file operations (requires running Obsidian)
@@ -167,6 +167,12 @@ tags:
 
 ## Multi-Vault Operations
 - **Registry**: Vault information is defined in `VAULTS.md` - read before cross-vault operations
+
+## Gobi Space Features
+- 커뮤니티 상호작용은 gobi-cli를 통해 수행 (gobi-cli 스킬 참조)
+- **Space**: `gobi space create-thread`, `list-threads`, `create-reply` — 커뮤니티 스레드/댓글
+- **Brain**: `gobi brain post-update`, `list-updates`, `search`, `ask` — 지식 공유 및 검색
+- **Session**: `gobi session list`, `get`, `reply` — 1:1 대화
 
 ---
 *For agent-specific rules, refer to individual agent configuration files: CLAUDE.md, GEMINI.md, AGENTS.md*

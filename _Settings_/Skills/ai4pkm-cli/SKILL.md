@@ -1,19 +1,20 @@
 ---
-name: ai4pkm-helper
-description: AI4PKM helper for orchestrator configuration, worker management, and CLI workflow integration.
+name: ai4pkm-cli
+description: AI4PKM CLI for orchestrator configuration, worker management, vault updates, and CLI workflow integration.
 metadata:
-  version: 2.0.0
+  version: 3.0.0
   author: lifidea
   created: 2025-12-10
-  updated: 2026-01-24
+  updated: 2026-03-06
   modules:
     - orchestrator
     - tasks
+    - vault-update
 ---
 
-# AI4PKM Helper
+# AI4PKM CLI
 
-This skill provides guidance for configuring and managing AI4PKM orchestrator and workers. It helps users set up agents, configure multi-worker execution, and manage CLI workflows.
+This skill provides guidance for configuring and managing AI4PKM orchestrator, workers, and vault updates. It helps users set up agents, configure multi-worker execution, manage CLI workflows, and update the vault from GitHub releases.
 
 ## AI4PKM Architecture
 
@@ -61,6 +62,7 @@ Claude should automatically load this skill when:
 "에이전트 목록" → List Agents (ai4pkm --list-agents)
 "Orchestrator 설정" → Orchestrator Setup Module
 "태스크 추가" → Task Management Module
+"볼트 업데이트" / "Vault update" → Vault Update Module
 ```
 
 ## Core Modules
@@ -275,6 +277,57 @@ pollers:
 - ✍️ Write
 - 📝 Docs & System
 
+### Module 3: Vault Update (볼트 업데이트)
+
+**Purpose**: Update vault files from GitHub releases using `gh` CLI
+
+**When to use**: User says "볼트 업데이트", "vault update", or asks to check for new versions
+
+**Update Flow** (agent-driven, step by step):
+
+1. **Read current version** from `orchestrator.yaml` `version` field
+2. **Check latest release** via `gh release list --repo jykim/ai4pkm-vault --limit 1`
+3. **List releases** between current and latest, present summary to user
+4. **Get changed files** via `gh api repos/jykim/ai4pkm-vault/compare/v{CURRENT}...{LATEST}` — group by status:
+   - Added files
+   - Modified files
+   - Removed files
+5. **Detect conflicts** — check `git log v{CURRENT}..HEAD --name-only` for locally modified files that also changed upstream
+6. **Resolve conflicts** — for each conflict, ask user:
+   - Accept remote (overwrite local)
+   - Keep local (skip this file)
+   - Show diff (display both versions)
+7. **Apply changes** — fetch files via `gh api repos/jykim/ai4pkm-vault/contents/{path}?ref={tag}`, decode base64, write locally; delete removed files
+8. **Update version** in `orchestrator.yaml`
+9. **Summary** — report applied/skipped files, offer to commit
+
+**Safety Rules**:
+- **Skip user content directories**: `Ingest/`, `Journal/`, `Topics/`, `AI/`
+- **Skip user config files**: `.gobi/settings.yaml`, `secrets.yaml`, `.obsidian/workspace.json`
+- **Always show changes before applying** — never auto-apply without user review
+- **Allow skipping individual files** — user can accept/reject per file
+- **Preserve local modifications** — flag conflicts rather than overwriting
+
+**Example Interaction**:
+```
+User: 볼트 업데이트
+Agent: 현재 버전: v3.4, 최신 버전: v3.5
+       변경 사항:
+       - [추가] _Settings_/Skills/new-skill/SKILL.md
+       - [수정] AGENTS.md
+       - [수정] orchestrator.yaml
+       - [삭제] _Settings_/Prompts/old-prompt.md
+
+       로컬 수정 충돌: AGENTS.md (로컬에서도 수정됨)
+       → AGENTS.md: 원격 적용 / 로컬 유지 / 차이점 보기?
+User: 차이점 보기
+Agent: [shows diff]
+User: 원격 적용
+Agent: 업데이트 완료! 3개 파일 적용, 1개 삭제, 0개 스킵
+       orchestrator.yaml 버전을 v3.5로 업데이트했습니다.
+       커밋할까요?
+```
+
 ## Voice Mode Configuration
 
 ### Language Support
@@ -345,11 +398,12 @@ Each prompt is independent but connected:
 ## Files Structure
 
 ```
-_Settings_/Skills/ai4pkm-helper/
+_Settings_/Skills/ai4pkm-cli/
 ├── SKILL.md                    # This file
 └── modules/                    # (Future: detailed module guides)
     ├── orchestrator.md
-    └── tasks.md
+    ├── tasks.md
+    └── vault-update.md
 
 _Settings_/Prompts/
 ├── AI4PKM - Orchestrator Setup.md
@@ -389,7 +443,7 @@ orchestrator.yaml               # Main config file (vault root)
 
 ## Future Enhancements
 
-### Planned (v2.1+)
+### Planned (v3.1+)
 - GUI-based config editor (Gobi Desktop)
 - Agent template library
 - Performance monitoring dashboard

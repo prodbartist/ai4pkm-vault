@@ -1,11 +1,11 @@
 ---
-title: AI4PKM Agent Skill
-version: 1.0.0-mvp
+title: AI4PKM CLI Skill
+version: 3.0.0
 ---
 
-# AI4PKM Agent Skill
+# AI4PKM CLI Skill
 
-This skill provides comprehensive onboarding and setup guidance for AI4PKM beginners.
+This skill provides orchestrator configuration, worker management, and vault update capabilities for AI4PKM.
 
 ## 📖 Full Documentation
 
@@ -13,7 +13,7 @@ This skill provides comprehensive onboarding and setup guidance for AI4PKM begin
 
 ## Quick Links
 
-- **Main Skill**: [[_Settings_/Skills/ai4pkm-agent/SKILL.md]]
+- **Main Skill**: [[_Settings_/Skills/ai4pkm-cli/SKILL.md]]
 - **Prompts**: `_Settings_/Prompts/AI4PKM - Onboarding - Step *.md`
 - **Templates**: `_Settings_/Templates/AGENTS_beginner.md`, `daily_journal_template.md`
 
