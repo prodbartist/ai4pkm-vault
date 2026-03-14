@@ -5,50 +5,16 @@ category: visualization
 created: 2025-12-31
 updated: 2026-02-24
 ---
-
-앰비언트모드 음성 녹취를 실시간으로 분석하여 Obsidian Canvas에 브레인스토밍 맵을 자동 생성/업데이트하는 프롬프트.
-
-## Overview
-
-앰비언트모드로 녹취된 사용자의 생각을 실시간으로 시각화. 주제를 추출하고, 카테고리별로 분류하여 캔버스에 표시. 파일 변경 시마다 자동 업데이트.
+앰비언트모드로 녹취된 사용자의 생각을 실시간으로 시각화. 주제를 추출하고, 카테고리별로 분류하여 캔버스에 시각화. 캔버스가 없으면 새로 생성하고, 캔버스가 존재하는 경우 여기에 신규 내용을 반영. 업데이트는 필요시에만 진행하고, 업데이트시 기존 캔버스 내용 및 레이아웃과의 일관성을 최대한 고려.
 
 ## Input
-- AmbientMode 녹취 파일: `_Settings_/History/Ambient/{{datetime}}.md`
-- 기존 캔버스 (있는 경우): `AI/Canvas/{{datetime}} {{main_topic}}.canvas`
+- Ambient Mode 녹취 파일: `SOURCE_FILE`
+- 기존 캔버스 (있는 경우): `INPUT_CANVAS`
 
 ## Output
-- 브레인스토밍 캔버스: `AI/Canvas/{{datetime}} {{main_topic}}.canvas`
+- 브레인스토밍 캔버스: `OUTPUT_CANVAS`
 
 ## Process
-
-### Phase 0: 소스 파일 수신 및 모니터링
-
-```
-1. RECEIVE SOURCE FILE
-   - Orchestrator가 새 AmbientMode 파일 생성 시 트리거
-   - 소스 파일 경로: _Settings_/History/AmbientMode/{{datetime}}.md
-   - 파일 내용을 읽고 Phase 1-3 실행 (초기 캔버스 생성)
-   - canvas_path = Phase 1-3에서 생성한 캔버스 파일 경로 기억
-
-2. MONITOR LOOP
-   last_content = 현재 파일 내용
-   while true:
-     - 10초 대기 (sleep 10)
-     - 파일 다시 읽기
-     - IF 파일에 "RECORDING COMPLETED" 라인 존재:
-       → Phase 1-3 최종 실행 (canvas_path 재사용) 후 EXIT
-     - IF 내용이 last_content와 다름:
-       → last_content 갱신
-       → Phase 1-3 실행 (canvas_path 재사용하여 캔버스 업데이트)
-       → 타이머 리셋
-     - IF 60초간 변경 없음:
-       → EXIT (타임아웃)
-
-3. EXIT
-   - 종료 전 최종 캔버스 상태 저장 확인
-   - 로그: "ACB 세션 종료 (사유: timeout|recording_completed)"
-```
-
 ### Phase 1: 콘텐츠 분석
 
 ```
@@ -338,23 +304,10 @@ updated: 2026-02-24
 
 ### 관련 스킬
 - [[obsidian-canvas]] - 캔버스 생성 기본 스킬
-- [[daily-driver-agent]] - 앰비언트모드 녹취 관리
-
-### 실행 예시
-```bash
-# Orchestrator가 새 AmbientMode 파일 감지 시 ACB 자동 실행
-# ACB는 내부 루프로 파일 변경을 모니터링하며 캔버스 업데이트
-# 종료 조건: 60초 비활성 또는 "RECORDING COMPLETED" 감지
-```
 
 ## Caveats
-
 ### One Recording = One Canvas
 - AmbientMode 녹음 파일 1개 = 캔버스 1개 (1:1 매핑, 엄격)
-- 캔버스 파일명은 콘텐츠 기반 동적 생성: `AI/Canvas/{{datetime}} {{main_topic}}.canvas`
-- 같은 녹음 파일의 업데이트만 기존 캔버스에 merge (ACB가 내부 루프로 모니터링)
-- 다른 녹음 파일은 같은 날짜여도 별도 캔버스 생성 (주제별 분리)
-- 다른 프롬프트(ICB 등)가 동일 소스로 별도 캔버스를 생성하지 않도록 ACB가 AmbientMode의 유일한 캔버스 생성 주체
 
 ### Skip Conditions
 - 의미없는 발화만 있는 경우 (감탄사, 외국어 테스트 등)
@@ -362,83 +315,7 @@ updated: 2026-02-24
 
 ### 언어 처리
 - Use vault's default language (primaryLanguage in .gobi/settings.yaml), 영어 원문 유지
-- 다국어 감탄사는 무시 (Ciao, Merhaba 등)
 
 ### 파일 크기
 - 대용량 녹취는 최신 발화 우선 처리
 - 오래된 발화는 요약/통합
-
-## 2025-12-31 Session Lessons Learned
-
-### 노드 가시성 핵심
-1. **H3 헤더 (###) 필수** - H1/H2는 너무 커서 실제 내용 안 보임
-2. **충분한 노드 높이** - 콘텐츠 양에 맞춰 최소 120-180px
-3. **카테고리 박스 높이 제한** - 700px 이하로 한눈에 보이게
-
-### 레이아웃 조정 피드백 루프
-- 사용자 피드백 즉시 반영 (예: "내용이 안 보여")
-- 박스 크기 = 콘텐츠 양 반영
-- 겹침 발생 시 즉각 좌표 재계산
-
-### 리스닝 모드 개선 방향
-- **배치 처리**: 매 발화마다 반응 X → 발화 종료 후 한꺼번에
-- **듀얼 모니터링**: 소스 파일 + 캔버스 동시 감시
-- 사용자 캔버스 직접 편집 → 학습 후 반영
-
-### 실제 적용 좌표 (검증됨)
-```
-source-file: x:-150, y:-100, 300x200
-cat-relationship: x:-750, y:-350, 530x650
-cat-tools: x:200, y:-450, 640x700
-cat-projects: x:200, y:300, 640x500
-cat-entertainment: x:-750, y:400, 530x400
-```
-
-## Phase 4: 대화록 정리 (Post-Processing)
-
-세션 종료 후 원본 트랜스크립트를 카테고리별로 정리하여 가독성 향상.
-
-### 정리 프로세스
-```
-1. 원본 발화를 시간순으로 읽기
-2. 카테고리별 H2 섹션 생성:
-   - ## 세션 시작
-   - ## 💑 관계 - [주제]
-   - ## 📋 프로젝트/일 - [주제]
-   - ## 💡 멀티플렉싱 전략
-   - ## 🛠️ 캔버스/도구 개발 - [세부]
-   - ## 🎧 노드 가시성 피드백
-   - ## 🎬 엔터테인먼트 카테고리
-   - ## 🔄 듀얼 모니터링 & 리스닝 모드
-   - ## 정리 요청
-3. 각 발화를 해당 카테고리 아래로 이동
-4. 타임스탬프와 원본 텍스트 유지
-5. 의미없는 발화 (감탄사, 외국어 테스트) 제거
-```
-
-### 카테고리 헤더 이모지 규칙
-
-| 이모지 | 카테고리 |
-|--------|----------|
-| 💑 | 관계/감정 |
-| 📋 | 프로젝트/업무 |
-| 💡 | 인사이트/전략 |
-| 🛠️ | 도구/개발 |
-| 🎧 | 피드백/조정 |
-| 🎬 | 엔터테인먼트 |
-| 🔄 | 프로세스 개선 |
-
-### 정리된 파일 예시
-```markdown
-# Ambient Mode Recording - YYYY-MM-DD HH:MM:SS PM
-
-## 세션 시작
-User|HH:MM:SS PM> 첫 발화...
-
-## 💑 관계 - 아내 서포트 문제
-User|HH:MM:SS PM> 관계 관련 발화...
-User|HH:MM:SS PM> 추가 발화...
-
-## 📋 프로젝트/일 - 1월 콜트 & 네이버
-User|HH:MM:SS PM> 업무 관련 발화...
-```
